@@ -5,6 +5,7 @@
   font-family: "Share Tech Mono", monospace;
 }
 body{
+  background-color: #6e93bb;
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -12,32 +13,36 @@ body{
   align-items: center;
   justify-content: center;
 }
-
 body div{
   width: 100%;
 }
 
-#board, .boardInfo{
+#board, .boardInfo, #gameOver{
   max-width: 500px;
 }
 
 #board{
+  padding: 10px;
+  background-color: #151515;
   display: grid;
   grid-template-columns: repeat(10, 1fr);
 }
-
 
 #start, .boardInfo{
   font-size: 25px;
 }
 
 #gameOver{
+  margin-top: 10px;
+  font-size: 25px;
+  text-align: center;
   display: none;
 }
+
 .boardInfo{
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   margin-top: 10px;
 }
 
@@ -46,9 +51,7 @@ body div{
   border: none;
   color:#ffffff;
 }
-#scoreBoard{
-  display: inline-flex;
-}
+
 
 .square{
   aspect-ratio: 1;
@@ -59,7 +62,7 @@ body div{
 }
 
 .snakeSquare{
-  background-color: #ccf47f;
+  background-color: #98fb98;
 }
 
 .foodSquare{

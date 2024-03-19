@@ -92,7 +92,7 @@ const addFood = () => {
   createFood();
 }
 const gameOverP = () =>{
-  gameOver.style.display = 'block';
+  gameOver.style.display = 'inline';
   clearInterval(moveInterval)
   startBtn.disabled = false;
 }
