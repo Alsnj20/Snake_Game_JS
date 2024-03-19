@@ -17,15 +17,50 @@ const directions = {
 }
 
 //Game Variables
-let snake;
-let score;
+let snake = [];
+let score = 0;
 let direction;
-let boardSquares;
-let emptySquares;
+let boardSquares = {};
+let emptySquares = [];
 let moveInterval;
 
 const boardSize = 10;
 const gameSpeed = 100; //100 milisegundos
+
+
+const createBord = () => {
+  boardSquares.forEach( (row, rowIndex) => {
+    row.forEach((column, columnIndex) =>{
+      const squareValue = `${rowIndex}${columnIndex}`;
+      const squareDiv = document.createElement('div');
+      squareDiv.classList.add('square', 'emptySquare');
+      squareDiv.setAttribute('id', squareValue);
+      board.appendChild(squareDiv);
+      emptySquares.push(squareValue);
+    }) 
+  })
+}
+
+const drawSnake = ()=>{
+  //Remeber snake = ['00', '01', '02', '03'];
+  snake.forEach(square => drawSquare(square, 'snakeSquare'));
+
+}
+
+const drawSquare = (position, type) =>{
+  const [row, column] = position.split('');
+  boardSquares[row][column] = squareTypes[type];
+  const square = document.getElementById(position);
+  //square.setAttribute('class', `${type}`);
+  square.classList.add(type);
+  if(type === 'EmptySquare'){
+    emptySquares.push(position);
+  }else{
+    if(emptySquares.indexOf(position) !== -1){
+      emptySquares.splice(emptySquares.indexOf(position), 1);
+    }
+  }
+}
 
 setGame = () => {
   snake = ['00', '01', '02', '03'];
@@ -35,16 +70,20 @@ setGame = () => {
   boardSquares = Array.from(Array(boardSize), ()=> 
     new Array(boardSize).fill(squareTypes.emptySquare)
   );
+  console.log(boardSquares);
+  board.innerHTML = "";
+  emptySquares = [];
+  createBord();
+  drawSnake();
 }
-setGame();
-boardSquares.map((row) => {
-  row.forEach((cell) => console.log(`|${cell}|`));
-  console.log("\n");
-});
+
 
 const startGame = () => {
   //Inicializar valores
   setGame();
+  gameOver.style.display = 'none';
+  /*desactivado*/
+  startBtn.disabled = true;
 
 }
 
