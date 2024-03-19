@@ -61,6 +61,13 @@ const drawSquare = (position, type) =>{
     }
   }
 }
+const updateScore = () => scoreBoard.textContent = score;
+
+const createFood = () => {
+  const random = Math.floor(Math.random()*emptySquares.length);
+  const emptyCeil = emptySquares[random];
+  drawSquare(emptyCeil, 'foodSquare');
+}
 
 setGame = () => {
   snake = ['00', '01', '02', '03'];
@@ -74,7 +81,6 @@ setGame = () => {
   board.innerHTML = "";
   emptySquares = [];
   createBord();
-  drawSnake();
 }
 
 
@@ -84,7 +90,9 @@ const startGame = () => {
   gameOver.style.display = 'none';
   /*desactivado*/
   startBtn.disabled = true;
-
+  drawSnake();
+  updateScore();
+  createFood();
 }
 
 startBtn.addEventListener('click', startGame);
