@@ -150,7 +150,7 @@ const startGame = () => {
   updateScore();
   createFood();
   document.addEventListener('keydown', directionEvent);
-  moveInterval = setInterval(() => moveSnake(), gameSpeed);
+  moveInterval = setInterval(() => moveSnake(), 200);
   console.log(moveInterval);
 
 }
