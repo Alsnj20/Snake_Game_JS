@@ -51,7 +51,8 @@ const drawSquare = (position, type) =>{
   const [row, column] = position.split('');
   boardSquares[row][column] = squareTypes[type];
   const square = document.getElementById(position);
-  square.setAttribute('class', `${type}`);
+  square.setAttribute('class', `square ${type}`);
+
   if(type === 'EmptySquare'){
     emptySquares.push(position);
   }else{
